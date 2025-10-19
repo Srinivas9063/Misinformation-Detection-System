@@ -1,0 +1,173 @@
+{% extends 'SProvider/Header.html' %}
+{% block researchblock %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!-- Bootstrap CSS (assuming it's not in base template) -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    
+    <!-- Custom Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Russo+One|Righteous|Fredoka+One" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'images/icon.png' %}" type="image/x-icon" />
+
+    <style>
+        /* General Styling */
+        body {
+            background: linear-gradient(135deg, #2C3E50, #4A90E2, #F5A623);
+            background-size: 200% 200%;
+            animation: gradientShift 15s ease infinite;
+            font-family: 'Righteous', cursive;
+            color: #ECF0F1;
+            perspective: 1000px;
+            margin: 0;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+
+        /* Container Styling */
+        .container-fluid {
+            padding: 60px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Sidebar Menu */
+        .sidemenu {
+            position: fixed;
+            left: 0;
+            top: 150px; /* Adjust based on header height */
+            width: 200px;
+            background: rgba(44, 62, 80, 0.9);
+            padding: 20px;
+            border-radius: 0 15px 15px 0;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            transform: translateZ(15px);
+            transition: transform 0.3s ease;
+        }
+
+        .sidemenu:hover {
+            transform: translateZ(25px);
+        }
+
+        .sidemenu h3 {
+            color: #ECF0F1;
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.2rem;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .sidemenu a {
+            color: #F5A623;
+            text-decoration: none;
+            font-family: 'Righteous', cursive;
+            font-size: 1rem;
+            text-transform: uppercase;
+            display: block;
+            padding: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .sidemenu a:hover {
+            color: #ECF0F1;
+            background: linear-gradient(45deg, #4A90E2, #7FB8F7);
+            transform: translateZ(10px);
+            box-shadow: 0 5px 15px rgba(74, 144, 226, 0.5);
+        }
+
+        /* Chart Container */
+        #chartContainer {
+            width: 80%;
+            max-width: 900px;
+            height: 500px;
+            margin-left: 250px; /* Space for sidebar */
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            transform: translateZ(20px);
+            transition: transform 0.3s ease;
+        }
+
+        #chartContainer:hover {
+            transform: translateZ(30px);
+        }
+
+        /* Topic Styling */
+        .topic {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .topic h1 {
+            display: none; /* Removed as no title was provided; add back if needed */
+        }
+    </style>
+
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script>
+    window.onload = function() {
+        var chart = new CanvasJS.Chart("chartContainer", {
+            animationEnabled: true,
+            theme: "dark2", // Matches the dark theme
+            title: {
+                text: "Dislikes Distribution Analysis",
+                fontFamily: "Fredoka One",
+                fontColor: "#F5A623",
+                fontSize: 25
+            },
+            data: [{
+                {% if dislike_chart == "bar" %}
+                    type: "bar",
+                {% elif dislike_chart == "pie" %}
+                    type: "pie",
+                {% elif dislike_chart == "spline" %}
+                    type: "spline",
+                {% endif %}
+                startAngle: 240,
+                yValueFormatString: "##0.00\"%\"",
+                indexLabel: "{label} {y}",
+                indexLabelFontColor: "#ECF0F1",
+                dataPoints: [
+                    {% for o in form %}
+                        {y: {{ o.dcount }}, label: "{{ o.names }}"},
+                    {% endfor %}
+                ]
+            }]
+        });
+        chart.render();
+    }
+    </script>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="topic">
+            <div class="sidemenu">
+                <h3>
+                    <a href="{% url 'dislikeschart' 'pie' %}">Pie Chart</a>
+                    <a href="{% url 'dislikeschart' 'bar' %}">Bar Chart</a>
+                    <a href="{% url 'dislikeschart' 'spline' %}">Spline Chart</a> <!-- Fixed 'coloumn' to 'spline' -->
+                </h3>
+            </div>
+            <div id="chartContainer" class="graph"></div>
+        </div>
+    </div>
+</body>
+</html>
+{% endblock %}

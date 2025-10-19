@@ -1,0 +1,163 @@
+{% extends 'SProvider/Header.html' %}
+{% block researchblock %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!-- Bootstrap CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    
+    <!-- Custom Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Lobster|Righteous|Fredoka+One" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'images/icon.png' %}" type="image/x-icon" />
+
+    <style>
+        /* General Styling */
+        body {
+            background: linear-gradient(135deg, #2C3E50, #4A90E2, #F5A623);
+            background-size: 200% 200%;
+            animation: gradientShift 15s ease infinite;
+            font-family: 'Righteous', cursive;
+            color: #ECF0F1;
+            perspective: 1000px;
+            margin: 0;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+
+        .container-fluid {
+            padding: 60px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .container {
+            background: rgba(44, 62, 80, 0.95); /* Slightly more opaque for contrast */
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), inset 0 0 15px rgba(255, 255, 255, 0.1);
+            max-width: 1100px; /* Slightly wider for larger tables */
+            transform: rotateY(5deg) translateZ(50px); /* Subtler tilt */
+            transition: transform 0.5s ease;
+        }
+
+        .container:hover {
+            transform: rotateY(0deg) translateZ(70px);
+        }
+
+        /* Title Styling */
+        .style1 {
+            color: #0795ab;
+            font-weight: bold;
+            font-size: 1.8rem; /* Slightly larger for emphasis */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            transform: translateZ(15px);
+            text-align: center;
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            margin: 20px 0;
+            border-collapse: separate;
+            border-spacing: 0;
+            border: 5px solid #F5A623;
+            border-radius: 10px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            transform: translateZ(10px);
+            overflow: hidden; /* Ensures rounded corners apply to content */
+        }
+
+        th, td {
+            padding: 20px; /* More padding for readability */
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        th {
+            background: linear-gradient(45deg, #4A90E2, #7FB8F7);
+            color: #ECF0F1;
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.3rem; /* Slightly larger for headers */
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+            border-bottom: 3px solid #F5A623; /* Fixed typo from Arabic 'مرز' */
+        }
+
+        td {
+            background: #ECF0F1;
+            color: #F5A623;
+            font-size: 1.1rem;
+            font-family: 'Righteous', cursive;
+            border-bottom: 1px solid #4A90E2;
+            transition: background 0.3s ease; /* Smooth hover effect */
+        }
+
+        td:hover {
+            background: #DDE4E9; /* Subtle hover effect */
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Custom Text */
+        .text-uppercase {
+            font-family: 'Righteous', cursive;
+        }
+
+        hr {
+            border-top: 3px solid #4A90E2; /* Thicker for emphasis */
+            margin: 30px 0;
+            box-shadow: 0 2px 5px rgba(74, 144, 226, 0.3);
+            transform: translateZ(5px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <form role="form" method="POST">
+                        {% csrf_token %}
+                        <fieldset>
+                            <p class="text-uppercase style1">Prediction of Misinformation Detection Type</p>
+                            <hr>
+                            <div>
+                                <table>
+                                    <tr>
+                                        <th>Text Message</th>
+                                        <th>Prediction</th>
+                                    </tr>
+                                    {% for object in list_objects %}
+                                    <tr>
+                                        <td>{{ object.Tweet_Message }}</td>
+                                        <td>{{ object.Prediction }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </table>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+{% endblock %}

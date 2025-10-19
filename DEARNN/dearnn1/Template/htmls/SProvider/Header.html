@@ -1,0 +1,109 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Service Provider Dashboard</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    
+    <!-- Bootstrap CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    
+    <!-- Custom Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Russo+One|Righteous|Fredoka+One" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'images/icon.png' %}" type="image/x-icon" />
+
+    <style>
+        body {
+            background: linear-gradient(135deg, #2C3E50, #4A90E2, #F5A623);
+            background-size: 200% 200%;
+            animation: gradientShift 15s ease infinite;
+            font-family: 'Russo One', sans-serif;
+            color: #ECF0F1;
+            margin: 0;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+
+        h1 {
+            color: #4A90E2;
+            font-family: 'Fredoka One', cursive;
+            font-size: 2.5rem;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3), 0 0 10px #4A90E2;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .topnav {
+            overflow: hidden;
+            background: rgba(44, 62, 80, 0.9);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            padding: 10px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .topnav a {
+            float: left;
+            color: #ECF0F1;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 1rem;
+            font-family: 'Righteous', cursive;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .topnav a:hover {
+            background: linear-gradient(45deg, #4A90E2, #7FB8F7);
+            color: #ECF0F1;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(74, 144, 226, 0.5);
+        }
+
+        .topnav a.active {
+            background: #F5A623;
+            color: #ECF0F1;
+        }
+
+        .mainholder {
+            padding: 40px;
+            min-height: calc(100vh - 200px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+<body>
+    <h1>Explainable Misinformation Detection Across Multiple Social Media Platforms</h1>
+
+    <div class="topnav">
+        <a href="{% url 'Train_Test_DataSets' %}">Train & Test The Datasets</a>
+        <a href="{% url 'likeschart' 'bar' %}">View Accuracy in Bar Chart</a>
+        <a href="{% url 'charts1' 'line' %}">View Accuracy Results</a>
+        <a href="{% url 'View_Predicted_Cyberbullying_Detection_Type' %}">View Misinformation Detection</a>
+        <a href="{% url 'Find_Predicted_Cyberbullying_Detection_Ratio' %}">Find Detection Ratio</a>
+        <a href="{% url 'Download_Predicted_DataSets' %}">Download Predicted Datasets</a>
+        <a href="{% url 'charts' 'line' %}">View Detection Ratio Results</a>
+        <a href="{% url 'View_Remote_Users' %}">View All Remote Users</a>
+        <a href="{% url 'login' %}">Logout</a>
+    </div>
+
+    <div class="mainholder">
+        {% block researchblock %}
+        {% endblock %}
+    </div>
+</body>
+</html>

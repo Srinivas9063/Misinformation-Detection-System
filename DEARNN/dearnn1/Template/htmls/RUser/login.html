@@ -1,0 +1,226 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Login</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    
+    <!-- Custom Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Lobster|Righteous|Fredoka+One" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'images/icon.png' %}" type="image/x-icon" />
+
+    <style>
+        /* General Styling */
+        body {
+            background: linear-gradient(135deg, #2C3E50, #4A90E2, #F5A623);
+            background-size: 200% 200%;
+            animation: gradientShift 15s ease infinite;
+            font-family: 'Righteous', cursive;
+            color: #ECF0F1;
+            perspective: 1000px;
+            margin: 0;
+            min-height: 100vh;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+
+        .container-fluid {
+            padding: 60px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .container {
+            background: rgba(44, 62, 80, 0.9);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), inset 0 0 10px rgba(255, 255, 255, 0.1);
+            max-width: 900px;
+            transform: rotateY(10deg) translateZ(50px);
+            transition: transform 0.5s ease;
+        }
+
+        .container:hover {
+            transform: rotateY(0deg) translateZ(70px);
+        }
+
+        /* Title Styling */
+        #title {
+            font-family: 'Fredoka One', cursive;
+            font-size: 2.5rem;
+            color: #4A90E2;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3), 0 0 10px #4A90E2;
+            text-align: center;
+            transform: translateZ(20px);
+        }
+
+        /* Subtitle Text */
+        .text-muted {
+            font-family: 'Righteous', cursive;
+            color: #F5A623;
+            font-size: 1rem;
+            font-weight: bold;
+            text-align: center;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+            transform: translateZ(10px);
+        }
+
+        /* Form Styling */
+        .form-group {
+            margin-bottom: 20px;
+            perspective: 500px;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 25px;
+            background: #ECF0F1;
+            font-size: 1rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2), inset 0 2px 5px rgba(0, 0, 0, 0.1);
+            transform: translateZ(10px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus {
+            outline: none;
+            background: #fff;
+            box-shadow: 0 10px 20px rgba(74, 144, 226, 0.5);
+            transform: translateZ(20px) scale(1.05);
+        }
+
+        /* Buttons */
+        .btn {
+            background: linear-gradient(45deg, #4A90E2, #7FB8F7);
+            color: #ECF0F1;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-family: 'Righteous', cursive;
+            font-size: 1rem;
+            text-transform: uppercase;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transform: translateZ(15px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: inline-block;
+            margin: 10px 5px;
+            text-decoration: none; /* Ensures no underline on links */
+            cursor: pointer; /* Indicates clickable */
+        }
+
+        .btn:hover {
+            transform: translateZ(25px) translateY(-5px);
+            box-shadow: 0 15px 30px rgba(74, 144, 226, 0.5);
+            color: #ECF0F1;
+            text-decoration: none;
+        }
+
+        /* Image Styling */
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            transform: translateZ(30px) rotateX(5deg);
+            transition: transform 0.3s ease;
+        }
+
+        img:hover {
+            transform: translateZ(40px) rotateX(0deg);
+        }
+
+        /* Custom Text */
+        .style5 {
+            font-family: 'Righteous', cursive;
+            color: #F5A623;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            transform: translateZ(15px);
+        }
+
+        hr {
+            border-top: 2px solid #4A90E2;
+            margin: 30px 0;
+            box-shadow: 0 2px 5px rgba(74, 144, 226, 0.3);
+            transform: translateZ(5px);
+        }
+
+        /* Button Group */
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="container">
+            <h2 class="text-center" id="title">Explainable Misinformation Detection Across Multiple Social Media Platforms</h2>
+            <p class="text-center">
+                <small class="text-muted">Hate speech, Tweets, ML algorithms, recurrent neural networks, short text topic modeling, Misinformation detection, social media.</small>
+            </p>
+            <hr>
+            <div class="row">
+                <div class="col-md-5">
+                    <form role="form" method="POST">
+                        {% csrf_token %}
+                        <fieldset>
+                            <!-- Placeholder for additional form elements if needed -->
+                        </fieldset>
+                    </form>
+                </div>
+
+                <div class="col-md-2">
+                    <!-- Spacer -->
+                </div>
+
+                <div class="col-md-5">
+                    <form method="POST" role="form">
+                        {% csrf_token %}
+                        <fieldset>
+                            <img src="{% static 'Login.jpg' %}" alt="Login Illustration">
+                            <p class="style5">Login Using Your Account:</p>
+                            <div class="form-group">
+                                <input type="text" name="username" placeholder="User Name" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" name="password" placeholder="Password" required>
+                            </div>
+                            <div>
+                                <input type="submit" name="submit1" class="btn btn-md" value="Sign In">
+                            </div>
+                            <p class="style5 mt-4">Other Options:</p>
+                            <div class="button-group">
+                                <a href="{% url 'serviceproviderlogin' %}" class="btn btn-lg">Service Provider</a>
+                                <a href="{% url 'Register1' %}" class="btn btn-lg">Register</a>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,18 @@
+Cyberbullying Detection in Twitter Social Media Platform
+
+IEEE Access and Machine Learning,Volume:10,Issue Date:March.11,2022.
+
+Hate speech, , Tweets, ML algorithm, recurrent controlling
+neural networks, short text topic modeling, cyberbullying detection, social media.
+
+DEARNN
+
+dearnn
+
+
+Cyberbullying_Detection_Type
+
+Tweet_Message
+Prediction
+
+

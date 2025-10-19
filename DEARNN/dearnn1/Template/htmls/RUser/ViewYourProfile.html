@@ -1,0 +1,167 @@
+{% extends 'RUser/design.html' %}
+{% block userblock %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!-- Bootstrap CSS (assuming it's not in base template) -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    
+    <!-- Custom Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Lobster|Righteous|Fredoka+One" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'images/icon.png' %}" type="image/x-icon" />
+
+    <style>
+        /* General Styling */
+        body {
+            background: linear-gradient(135deg, #2C3E50, #4A90E2, #F5A623);
+            background-size: 200% 200%;
+            animation: gradientShift 15s ease infinite;
+            font-family: 'Righteous', cursive;
+            color: #ECF0F1;
+            perspective: 1000px;
+            margin: 0;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+
+        .container-fluid {
+            padding: 60px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .container {
+            background: rgba(44, 62, 80, 0.9);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), inset 0 0 10px rgba(255, 255, 255, 0.1);
+            max-width: 900px;
+            transform: rotateY(10deg) translateZ(50px);
+            transition: transform 0.5s ease;
+        }
+
+        .container:hover {
+            transform: rotateY(0deg) translateZ(70px);
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            margin: 20px 0;
+            border-collapse: separate;
+            border-spacing: 0;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transform: translateZ(10px);
+        }
+
+        td {
+            padding: 15px;
+            text-align: left;
+            vertical-align: middle;
+            border-bottom: 1px solid #4A90E2;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .label {
+            background: linear-gradient(45deg, #4A90E2, #7FB8F7);
+            color: #ECF0F1;
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.2rem;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+            width: 30%;
+            border-radius: 10px 0 0 10px;
+        }
+
+        .value {
+            background: #ECF0F1;
+            color: #F5A623;
+            font-size: 1.1rem;
+            font-family: 'Righteous', cursive;
+            width: 70%;
+            border-radius: 0 10px 10px 0;
+        }
+
+        /* Custom Text */
+        .style2 {
+            color: #F5A623;
+            font-weight: bold;
+        }
+
+        .text-uppercase {
+            font-family: 'Righteous', cursive;
+        }
+
+        hr {
+            border-top: 2px solid #4A90E2;
+            margin: 30px 0;
+            box-shadow: 0 2px 5px rgba(74, 144, 226, 0.3);
+            transform: translateZ(5px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <table>
+                        <tr>
+                            <td class="label"><span class="style2">Username</span></td>
+                            <td class="value">{{ object.username }}</td>
+                        </tr>
+                        <tr>
+                            <td class="label"><span class="style2">Email Id</span></td>
+                            <td class="value">{{ object.email }}</td>
+                        </tr>
+                        <tr>
+                            <td class="label"><span class="style2">Mobile Number</span></td>
+                            <td class="value">{{ object.phoneno }}</td>
+                        </tr>
+                        <tr>
+                            <td class="label"><span class="style2">Gender</span></td>
+                            <td class="value">{{ object.gender }}</td>
+                        </tr>
+                        <tr>
+                            <td class="label"><span class="style2">Address</span></td>
+                            <td class="value">{{ object.address }}</td>
+                        </tr>
+                        <tr>
+                            <td class="label"><span class="style2">Country</span></td>
+                            <td class="value">{{ object.country }}</td>
+                        </tr>
+                        <tr>
+                            <td class="label"><span class="style2">State</span></td>
+                            <td class="value">{{ object.state }}</td>
+                        </tr>
+                        <tr>
+                            <td class="label"><span class="style2">City</span></td>
+                            <td class="value">{{ object.city }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+{% endblock %}

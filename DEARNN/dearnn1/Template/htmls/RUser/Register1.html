@@ -1,0 +1,286 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Register Your Details</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    
+    <!-- Custom Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Lobster|Righteous|Fredoka+One" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'images/icon.png' %}" type="image/x-icon" />
+
+    <style>
+        /* General Styling */
+        body {
+            background: linear-gradient(135deg, #2C3E50, #4A90E2, #F5A623);
+            background-size: 200% 200%;
+            animation: gradientShift 15s ease infinite;
+            font-family: 'Righteous', cursive;
+            color: #ECF0F1;
+            perspective: 1000px;
+            margin: 0;
+            min-height: 100vh;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+
+        .container-fluid {
+            padding: 60px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .container {
+            background: rgba(44, 62, 80, 0.9);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), inset 0 0 10px rgba(255, 255, 255, 0.1);
+            max-width: 1000px;
+            transform: rotateY(10deg) translateZ(50px);
+            transition: transform 0.5s ease;
+        }
+
+        .container:hover {
+            transform: rotateY(0deg) translateZ(70px);
+        }
+
+        /* Title Styling */
+        #title {
+            font-family: 'Fredoka One', cursive;
+            font-size: 2.5rem;
+            color: #4A90E2;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3), 0 0 10px #4A90E2;
+            text-align: center;
+            transform: translateZ(20px);
+        }
+
+        /* Subtitle Text */
+        .text-muted {
+            font-family: 'Righteous', cursive;
+            color: #F5A623;
+            font-size: 1rem;
+            font-weight: bold;
+            text-align: center;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+            transform: translateZ(10px);
+        }
+
+        /* Form Styling */
+        .form-group {
+            margin-bottom: 20px;
+            perspective: 500px;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="email"],
+        input[type="number"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 25px;
+            background: #ECF0F1;
+            font-size: 1rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2), inset 0 2px 5px rgba(0, 0, 0, 0.1);
+            transform: translateZ(10px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus,
+        input[type="email"]:focus,
+        input[type="number"]:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            background: #fff;
+            box-shadow: 0 10px 20px rgba(74, 144, 226, 0.5);
+            transform: translateZ(20px) scale(1.05);
+        }
+
+        textarea {
+            height: 80px;
+            resize: vertical;
+        }
+
+        /* Buttons and Links */
+        .btn {
+            background: linear-gradient(45deg, #4A90E2, #7FB8F7);
+            color: #ECF0F1;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-family: 'Righteous', cursive;
+            font-size: 1rem;
+            text-transform: uppercase;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transform: translateZ(15px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: inline-block;
+            margin: 10px 5px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translateZ(25px) translateY(-5px);
+            box-shadow: 0 15px 30px rgba(74, 144, 226, 0.5);
+            color: #ECF0F1;
+            text-decoration: none;
+        }
+
+        /* Image Styling */
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            transform: translateZ(30px) rotateX(5deg);
+            transition: transform 0.3s ease;
+        }
+
+        img:hover {
+            transform: translateZ(40px) rotateX(0deg);
+        }
+
+        /* Custom Text */
+        .style1 {
+            color: #4A90E2; /* Updated to match theme */
+            font-weight: bold;
+            font-size: 1.2rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            transform: translateZ(15px);
+        }
+
+        .style2 {
+            color: #F5A623; /* Updated to match theme */
+        }
+
+        hr {
+            border-top: 2px solid #4A90E2;
+            margin: 30px 0;
+            box-shadow: 0 2px 5px rgba(74, 144, 226, 0.3);
+            transform: translateZ(5px);
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            margin: 20px 0;
+            border-collapse: collapse;
+        }
+
+        td {
+            padding: 15px;
+            vertical-align: middle;
+        }
+
+        td.bg-red {
+            background: #4A90E2;
+            color: #ECF0F1;
+            font-weight: bold;
+            border-radius: 10px 0 0 10px;
+        }
+
+        /* Button/Link Group */
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="container">
+            <h2 class="text-center style1" id="title">Explainable Misinformation Detection Across Multiple Social Media Platforms</h2>
+            <p class="text-center">
+                <small class="text-muted">Hate speech, Tweets, ML algorithms, recurrent neural networks, short text topic modeling,Misinformation detection, social media.</small>
+            </p>
+            <hr>
+            <div class="row">
+                <div class="col-md-12">
+                    <form role="form" method="POST">
+                        {% csrf_token %}
+                        <fieldset>
+                            <img src="{% static 'Register.jpg' %}" alt="Register Illustration" class="d-block mx-auto">
+                            <p class="style1 text-center">REGISTER YOUR DETAILS HERE !!!</p>
+                            <table>
+                                <tr>
+                                    <td class="bg-red">Enter Username</td>
+                                    <td><input type="text" name="username" id="username" placeholder="User Name" required></td>
+                                    <td class="bg-red">Enter Password</td>
+                                    <td><input type="password" minlength="8" name="password" id="password" placeholder="Password" required></td>
+                                </tr>
+                                <tr>
+                                    <td class="bg-red">Enter Email Id</td>
+                                    <td><input type="email" pattern="^[a-zA-Z0-9._%+-]+@(gmail\.com|yahoo\.com|hotmail\.com)$" name="email" id="email" placeholder="Enter Email" required></td>
+                                    <td class="bg-red">Enter Address</td>
+                                    <td><textarea name="address" placeholder="Enter Address"></textarea></td>
+                                </tr>
+                                <tr>
+                                    <td class="bg-red">Enter Gender</td>
+                                    <td>
+                                        <select name="gender" required>
+                                            <option value="">----Select Gender----</option>
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
+                                            <option value="Others">Others</option>
+                                        </select>
+                                    </td>
+                                    <td class="bg-red">Enter Mobile Number</td>
+                                    <td><input type="number" name="phoneno" id="phoneno" min="5555555555" max="9999999999" placeholder="Enter Mobile Number" required></td>
+                                </tr>
+                                <tr>
+                                    <td class="bg-red">Country</td>
+                                    <td><input type="text" name="country" id="country" placeholder="country"></td>
+                                    <td class="bg-red">State</td>
+                                    <td><input type="text" name="state" id="State" placeholder="state"></td>
+                                </tr>
+                                <tr>
+                                    <td class="bg-red">City</td>
+                                    <td><input type="text" name="city" id="City" placeholder="city"></td>
+                                </tr>
+                                </tr>
+                            </table>
+                            <table>
+                                <tr>
+                                    <td class="bg-red text-center">
+                                        <span class="style2">Registered Status :: </span>
+                                        <span class="style2">{{ object }}</span>
+                                    </td>
+                                </tr>
+                            </table>
+                            <div>
+                                <input type="submit" name="submit1" class="btn btn-md" value="Sign up">
+                            </div>
+                            <div class="button-group">
+                                <a href="{% url 'login' %}" class="btn">Remote User</a>
+                                <a href="{% url 'serviceproviderlogin' %}" class="btn">Service Provider</a>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
